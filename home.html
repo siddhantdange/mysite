@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+body{
+	background-color: #ffffeb;
+	height: 1000px;
+	width: 100%;
+}
+
+#hcontainer{
+	display: table;
+	height: 10%;
+	width: 100%;
+	
+	background-color: rgba(255,255,255,0.5);
+	border-bottom: 1px solid #f7f6f6;
+	margin-bottom: 4%;
+	
+	text-align: center;
+}
+
+#hcontainer > span{
+	display: table-cell;
+	vertical-align: middle;
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+	font-size: 4em;
+	color: #808080;
+}
+
+#bcontainer{
+	height: 85%;
+	width: 100%;
+}
+
+#navpanel{
+	position: fixed;
+	display: table;
+	top: 25%;
+	height: 70%;
+	width: 45%;
+	left: -40.5%;
+	z-index: 1000;
+	
+	background-color: rgba(255,255,255,0.5);
+	border-right: 1px solid #f7f6f6;
+	
+	-webkit-transition: border-color linear 0.7s, left ease-in-out 0.5s;
+}
+
+#navpanel:hover{
+	left: 0%;
+	border-color: rgba(0,0,0,0);
+}
+
+#navpanel > ul{
+	height: 100%;
+	width: 90%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#navpanel li{
+	display: table;
+	height: 10%;
+	width: 100%;
+	
+	text-align: center;
+	
+	border: 1px solid #f7f6f6;
+	border-left: 0px;
+	
+	-webkit-transition: background-color linear 0.2s;
+}
+
+#navpanel li:hover a{
+	color: white;
+}
+
+#navpanel li:nth-child(5n+1):hover{
+background:#33B5E5;
+background-color:#33B5E5;
+}
+
+#navpanel li:nth-child(5n+2):hover{
+background:#AA66CC;
+background-color:#AA66CC;
+}
+
+#navpanel li:nth-child(5n+3):hover{
+background:#99CC00;
+background-color:#99CC00;
+
+}
+
+#navpanel li:nth-child(5n+4):hover{
+background:#FFBB33;
+background-color:#FFBB33;
+
+}
+
+#navpanel li:nth-child(5n+5):hover{
+background:#FF4444;
+background-color:#FF4444;
+}
+
+#navpanel li > a{
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 1.5em;
+	color:#808080;
+	text-decoration: none;
+	display: table-cell;
+	vertical-align: middle;
+	
+	-webkit-transition: color linear 0.2s;
+}
+
+#navtabbar{
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	
+}
+
+#navtabbar > p{
+	position: relative;
+	top: 35%;
+	font-family: 'Lato', sans-serif;
+	font-weight: 200;
+	font-size: 1.5em;
+	color:#808080;
+}
+
+#page{
+	position: relative;
+	height: 98%;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	
+	background-color: rgba(255,255,255,0.5);
+	border: 1px solid #f7f6f6;
+	
+}
+
+#fcontainer{
+	display: table;
+	height: 5%;
+	width: 100%;
+	
+	
+	background-color: rgba(255,255,255,0.5);
+	border-top: 1px solid #f7f6f6;
+	
+	text-align: center;
+}
+
+#fcontainer > span{
+	display: table-cell;
+	vertical-align: middle;
+	
+	font-family: 'Lato', sans-serif;
+	font-weight: 200;
+	font-size: 1.5em;
+	color:#808080;
+}
+</style>
+</head>
+<body>
+	<div id='hcontainer'><span>Sid</span></div>
+	<div id='bcontainer'>
+		<div id='navpanel'>
+			<ul>
+				<li><a href='#'>Home<a/></li>
+				<li><a href='#'>Me</a></li>
+				<li><a href='#'>Projects</a></li>
+				<li><a href='#'>LinkedIn</a></li>
+				<li><a href='#'>PhotoBlog</a></li>
+				<li><a href='#'>Contact</a></li>
+			</ul>
+			<div id='navtabbar'>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+			</div>
+		</div>
+		
+		<div id='page'>
+		</div>
+	</div>
+	<div id='fcontainer'><span>© 2013</span></div>
+</body>
+<footer>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	/*set the navbar metrics based on number of links*/
+	//set height
+	$('#navpanel li').css('height',.9/($('#navpanel li').length) * 100 + '%');
+	
+	//set margins
+	$('#navpanel li').css('margin-bottom',8 + 'px');
+	$('#navpanel li').last().css('margin-bottom',0 + 'px');
+	
+});
+</script>
+</footer>
+</html>
