@@ -1,0 +1,9 @@
+
+SITEINFO: 
+
+	FTP:
+		HOST: ftp.siddhantdange.tk
+		USERNAME: a8289258
+		PASSWORD: usual lowercase
+	
+	

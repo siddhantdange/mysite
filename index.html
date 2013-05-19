@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel='stylesheet' href='/infopage.css' />
 <style>
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
 
@@ -26,6 +27,8 @@ body{
 	border-bottom: 1px solid #D0D0D0;
 	
 	text-align: center;
+	
+	-webkit-transition: background-color linear 0.3s;
 }
 
 #hcontainer > span{
@@ -35,6 +38,12 @@ body{
 	font-weight: 100;
 	font-size: 4em;
 	color: #808080;
+	
+	-webkit-transition: text-decoration linear 0.3s;
+}
+
+#hcontainer span:hover{
+	text-decoration: underline;
 }
 
 #bcontainer{
@@ -48,7 +57,7 @@ body{
 	top: 25%;
 	height: 70%;
 	width: 45%;
-	left: -40.5%;
+	left: -41%;
 	z-index: 1000;
 	
 	background-color: rgba(150,150,150,0.4);
@@ -60,7 +69,7 @@ body{
 #navpanel:hover{
 	left: 0%;
 	border-color: rgba(0,0,0,0);
-	background-color: rgba(240,240,240,0.4);
+	background-color: rgba(240,240,240,0.7);
 }
 
 #navpanel > ul{
@@ -146,16 +155,39 @@ background-color:#FF4444;
 	color:#808080;
 }
 
-#page{
+#pagecontainer{
 	position: relative;
 	height: 98%;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	overflow-y: hidden;
 	
 	background-color: rgba(240,240,240,0.6);
 	border: 1px solid #D0D0D0;
 	
+}
+
+#pagecontainer > #page{
+	position: relative;
+	
+	height: 95%;
+	width: 90%;
+	float: left;
+	top: 2.5%;
+	left: 5%;
+	margin-left: auto;
+	margin-right:auto;
+	background-color: rgba(200,200,200,0.1);
+	border: 1px solid #D0D0D0;
+	border-radius: 10px;
+	z-index: 500;
+	
+	-webkit-transition: background-color linear 0.2s, top ease-in-out 0.5s, height linear 0.3s;
+}
+
+#pagecontainer > #page:hover{
+	background-color: rgba(200,200,200,0.2);
 }
 
 #fcontainer{
@@ -180,17 +212,18 @@ background-color:#FF4444;
 }
 </style>
 </head>
+<title>Sid</title>
 <body>
 	<div id='hcontainer'><span>Sid</span></div>
 	<div id='bcontainer'>
 		<div id='navpanel'>
 			<ul>
-				<li><a href='#'>Home<a/></li>
-				<li><a href='#'>Me</a></li>
-				<li><a href='#'>Projects</a></li>
-				<li><a href='#'>LinkedIn</a></li>
-				<li><a href='#'>PhotoBlog</a></li>
-				<li><a href='#'>Contact</a></li>
+				<li><a class='ajaxload' id='/home.html'>Home<a/></li>
+				<li><a class='ajaxload' id='/me.html'>Me</a></li>
+				<li><a class='ajaxload' id='/projects.html'>Projects</a></li>
+				<li><a href='http://www.linkedin.com/in/siddhantdange' target='_blank'>LinkedIn</a></li>
+				<li><a href='http://www.siddhantdange.tumblr.com' target='_blank'>PhotoBlog</a></li>
+				<li><a class='ajaxload' id='/contact.html'>Contact</a></li>
 			</ul>
 			<div id='navtabbar'>
 				<p>.</p>
@@ -199,13 +232,16 @@ background-color:#FF4444;
 			</div>
 		</div>
 		
-		<div id='page'>
+		<div id='pagecontainer'>
+			<div id='page'>
+			</div>
 		</div>
 	</div>
 	<div id='fcontainer'><span>&copy; 2013</span></div>
 </body>
 <footer>
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script src='/infopage.js'></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	/*set the navbar metrics based on number of links*/
@@ -216,7 +252,36 @@ $(document).ready(function(){
 	$('#navpanel li').css('margin-bottom',8 + 'px');
 	$('#navpanel li').last().css('margin-bottom',0 + 'px');
 	
+	//navlink clicked
+	$('#navpanel li > a').click(function(){
+		$linkClicked = $(this);
+		loadPageSlide($linkClicked);
+	});
+	
+	$('#hcontainer span').click(function(){
+		loadPageSlide($('#navpanel li:first'));
+	});
 });
+
+var loadPageSlide = function($linkClicked){
+	//move page down
+		$('#page #contentsection').fadeOut(200,function(){$('#page').html('')});
+		
+		$('#page').css('top','-100%');
+		setTimeout(function(){
+			$('#page').css('height','0%');
+			$('#page').load($linkClicked.attr('id') + ' #contentsection');
+			setTimeout(function(){
+				$('#page').css('height','95%');
+				
+				setTimeout(function(){
+					$('#page').css('top','2.5%');
+					
+				}, 400);
+			}, 800);
+		},500);
+}
+
 </script>
 </footer>
 </html>
