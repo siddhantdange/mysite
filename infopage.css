@@ -39,6 +39,64 @@ hr {
 	margin-right: -40px;
 }
 
+.centerverticalwrapper{
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+
+.centervertical{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.centerhorizontal{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.inline{
+	display: inline;
+}
+
+img{
+	border: 2px solid #D0D0D0;
+}
+
+/*TEXT*/
+.textsection{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	color:#808080;
+	
+	text-align: center;
+}
+
+#big{
+	font-size:6em;
+}
+
+#medium{
+	font-size: 1.5em;
+}
+
+.bluetext{
+	color: #33B5E5;
+}
+
+.redtext{
+	color: #FF4444;
+}
+
+a{
+	text-decoration: none;
+	color: #33B5E5;
+}
+
 /*FORMS*/
 #formsection{
 }
