@@ -11,17 +11,22 @@
 	margin: 0px;
 }
 
+html{
+	height: 100%;
+	width: 100%;
+}
+
 body{
 	background-color: #fffff4;
-	height: 1000px;
+	height: 100%;
 	width: 100%;
 }
 
 #hcontainer{
 	display: table;
-	height: 10%;
+	height: 1%;
 	width: 100%;
-	margin-bottom: 3%;
+	margin-bottom: 2%;
 	
 	background-color: rgba(240,240,240,0.6);
 	border-bottom: 1px solid #D0D0D0;
@@ -39,7 +44,7 @@ body{
 	font-size: 4em;
 	color: #808080;
 	
-	-webkit-transition: text-decoration linear 0.3s;
+	-webkit-transition: text-decoration linear 0.3s, color linear 0.2s;
 }
 
 #hcontainer span:hover{
@@ -47,14 +52,14 @@ body{
 }
 
 #bcontainer{
-	height: 85%;
+	height: 80%;
 	width: 100%;
 }
 
 #navpanel{
 	position: fixed;
 	display: table;
-	top: 25%;
+	top: 20%;
 	height: 70%;
 	width: 45%;
 	left: -41%;
@@ -89,7 +94,7 @@ body{
 	border: 1px solid #f7f6f6;
 	border-left: 0px;
 	
-	-webkit-transition: background-color linear 0.2s, opacity linear 0.2s;
+	-webkit-transition: background-color linear 0.2s, opacity linear 0.2s, border-color linear 0.2s;
 }
 
 #navpanel li:hover{
@@ -181,6 +186,7 @@ background-color:#FF4444;
 	background-color: rgba(200,200,200,0.1);
 	border: 1px solid #D0D0D0;
 	border-radius: 10px;
+	overflow: scroll;
 	z-index: 500;
 	
 	-webkit-transition: background-color linear 0.2s, top ease-in-out 0.5s, height linear 0.3s;
@@ -221,6 +227,7 @@ background-color:#FF4444;
 				<li><a class='ajaxload' id='/home.html'>Home<a/></li>
 				<li><a class='ajaxload' id='/me.html'>Me</a></li>
 				<li><a class='ajaxload' id='/projects.html'>Projects</a></li>
+				<li><a class='ajaxload' id='/press.html'>Press</a></li>
 				<li><a href='http://www.linkedin.com/in/siddhantdange' target='_blank'>LinkedIn</a></li>
 				<li><a href='http://www.siddhantdange.tumblr.com' target='_blank'>PhotoBlog</a></li>
 				<li><a class='ajaxload' id='/contact.html'>Contact</a></li>
@@ -243,10 +250,16 @@ background-color:#FF4444;
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
 <script src='/infopage.js'></script>
 <script type="text/javascript">
+var linkColors = ['#33B5E5',
+'#99CC00',
+'#FFBB33',
+'#FF4444',
+'#AA66CC'];
+
 $(document).ready(function(){
 	/*set the navbar metrics based on number of links*/
 	//set height
-	$('#navpanel li').css('height',.9/($('#navpanel li').length) * 100 + '%');
+	$('#navpanel li').css('height','12%'); //.9/($('#navpanel li').length) * 100 + '%'
 	
 	//set margins
 	$('#navpanel li').css('margin-bottom',8 + 'px');
@@ -256,30 +269,36 @@ $(document).ready(function(){
 	$('#navpanel li > a').click(function(){
 		$linkClicked = $(this);
 		loadPageSlide($linkClicked);
+		var colIndex = $('#navpanel li').index($(this).parent()) % 5;
+		$('#hcontainer').css('background-color',linkColors[colIndex]);
+		$('#hcontainer span').css('color','white');
 	});
 	
 	$('#hcontainer span').click(function(){
 		loadPageSlide($('#navpanel li:first'));
 	});
+	
 });
 
 var loadPageSlide = function($linkClicked){
 	//move page down
-		$('#page #contentsection').fadeOut(200,function(){$('#page').html('')});
-		
-		$('#page').css('top','-100%');
+	$('#page #contentsection').fadeOut(200,function(){$('#page').html('')});
+	
+	$('#page').css('top','-100%');
+	setTimeout(function(){
+		$('#page').css('height','0%');
+		$('#page').load($linkClicked.attr('id') + ' #contentsection');
 		setTimeout(function(){
-			$('#page').css('height','0%');
-			$('#page').load($linkClicked.attr('id') + ' #contentsection');
+			$('#page').css('height','95%');
+			
 			setTimeout(function(){
-				$('#page').css('height','95%');
+				$('#page').css('top','2.5%');
+			$('#hcontainer').css('background-color','rgba(240,240,240,0.7)');
+			$('#hcontainer span').css('color','#808080');
 				
-				setTimeout(function(){
-					$('#page').css('top','2.5%');
-					
-				}, 400);
-			}, 800);
-		},500);
+			}, 400);
+		}, 800);
+	},500);
 }
 
 </script>
