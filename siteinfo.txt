@@ -1,9 +1,16 @@
 
 SITEINFO: 
+COM
+===
+	HOST: ftp.siddhantdange.com
+	USERNAME: a3191333
+	PASSWORD: usual lowercase
 
-	FTP:
-		HOST: ftp.siddhantdange.tk
-		USERNAME: a8289258
-		PASSWORD: usual lowercase
+TK
+===
+FTP:
+	HOST: ftp.siddhantdange.tk
+	USERNAME: a8289258
+	PASSWORD: usual lowercase
 	
 	
